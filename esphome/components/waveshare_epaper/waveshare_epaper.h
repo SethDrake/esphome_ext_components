@@ -68,6 +68,8 @@ class WaveshareEPaper : public PollingComponent,
   GPIOPin *dc_pin_;
   GPIOPin *busy_pin_{nullptr};
   virtual uint32_t idle_timeout_() { return 1000u; }  // NOLINT(readability-identifier-naming)
+  
+  bool isDisplayInitialized;
 };
 
 enum WaveshareEPaperTypeAModel {
@@ -468,9 +470,9 @@ class WaveshareEPaper2P13InDKE : public WaveshareEPaper {
 
   void deep_sleep() override {
     // COMMAND POWER DOWN
-    this->command(0x10);
-    this->data(0x01);
-    // cannot wait until idle here, the device no longer responds
+    //this->command(0x10);
+    //this->data(0x01);
+    // disable power down to not lost display content after deep sleep
   }
 
   void set_full_update_every(uint32_t full_update_every);

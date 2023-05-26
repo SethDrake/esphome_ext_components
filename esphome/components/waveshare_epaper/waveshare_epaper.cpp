@@ -1675,7 +1675,10 @@ static const uint8_t PART_UPDATE_LUT_TTGO_DKE[LUT_SIZE_TTGO_DKE_PART] = {
     // 0x22,   0x17,   0x41,   0x0,    0x32,   0x32
 };
 
-void WaveshareEPaper2P13InDKE::initialize() {}
+void WaveshareEPaper2P13InDKE::initialize() {
+	isDisplayInitialized = true;
+}
+
 void HOT WaveshareEPaper2P13InDKE::display() {
   bool partial = this->at_update_ != 0;
   this->at_update_ = (this->at_update_ + 1) % this->full_update_every_;
